@@ -10,9 +10,11 @@
         <a href="DaftarTransaksi.php" class="active-menu"><i class="fa fa-dashboard"></i>Daftar transaksi</a>
       </li>
       <li>
-        <a href="FormInput.php"><i class="fa fa-desktop"></i>Form input</a>
+        <a href="barang.php"><i class="fa fa-desktop"></i>Barang</a>
       </li>
-          
+      <li>
+        <a href="customer.php"><i class="fa fa-bar-chart-o"></i>Customer</a>
+      </li>   
     </ul>
   </div>
 
@@ -38,7 +40,7 @@
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover" id="dataTables-example">
     <thead>
-      <tr>
+      <tr class="info">
         <th>No</th>
         <th>No transaksi</th>
         <th>Tanggal</th>
@@ -73,5 +75,49 @@
   ?>
   </tbody>
   </table>
-</body>
-</html>
+</div>
+</div>
+</div>
+
+  <!-- Advanced Tables -->
+<div class="panel panel-default">
+<div class="panel-heading">Transaksi/Customer</div>
+<div class="panel-body">
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+    <thead>
+      <tr class="info">
+        <th>#</th>
+        <th>#</th>
+        <th>No</th>
+        <th>Tanggal</th>
+        <th>Kode</th>
+        <th>Nama</th>
+        <th>Telp</th>
+      </tr>
+    </thead>
+  <tbody>
+  <?php
+  $no = 1;
+  // Include / load file koneksi.php
+  include "koneksi.php";
+  // Buat query untuk menampilkan semua data siswa
+  $sql = $pdo->prepare("SELECT * FROM m_customer");
+  $sql->execute(); // Eksekusi querynya
+  while($data = $sql->fetch()){ // Ambil semua data dari hasil eksekusi $sql
+    echo "<tr>";
+    echo "<td><a href='ubah/ubah.php?id=".$data['id']."'>Ubah</a></td>";
+    echo "<td><a href='hapus/hapus.php?id=".$data['id']."'>Hapus</a></td>";
+    echo "<td>".$no++."</td>";
+    echo "<td>".$data['tanggal']."</td>";
+    echo "<td>".$data['kode']."</td>";
+    echo "<td>".$data['nama']."</td>";
+    echo "<td>".$data['telp']."</td>";
+    echo "</tr>";
+  }
+  ?>
+  </tbody>
+  </table>
+  </div>
+</div>
+</div>
